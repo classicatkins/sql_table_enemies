@@ -1,0 +1,105 @@
+
+Resources:
+Tutored by Noah Sternberg
+https://www.w3schools.com/sql/sql_create_table.asp
+https://www.geeksforgeeks.org/difference-between-primary-key-and-foreign-key/#:~:text=A%20primary%20key%20is%20used%20to%20ensure%20data%20in%20the,between%20data%20in%20two%20tables.&text=It%20uniquely%20identifies%20a%20record%20in%20the%20relational%20database%20table.
+https://www.sqlshack.com/learn-sql-insert-into-table/
+https://docs.oracle.com/javase/tutorial/jdbc/basics/processingsqlstatements.html
+https://stackoverflow.com/questions/55880362/how-to-write-a-sql-query-that-returns-all-names-of-players-who
+
+1.
+CREATE TABLE Enemies 
+(
+    EnemyID INT,
+    Name VARCHAR(255),
+    Location VARCHAR(255),
+    Hitpoints INT,
+    Attack INT,
+    Defense INT,
+    ItemID INT,
+)
+
+2.
+CREATE TABLE Items
+(
+    ItemID INT,
+    Name VARCHAR(255),
+    Type VARCHAR(255),
+)
+
+3.
+The primary key from the Enemies table is the EnemyID.
+The foreign key from the Enimes table is the ItemID.
+The primary key from the Items tables is the ItemID.
+
+4.
+INSERT INTO Enemies
+    VALUES (136, 'hobgoblin', 'the dark woods', 140, 145, 130, 758)
+
+INSERT INTO Enemies
+    VALUES (214, 'skeleton guard', 'the graveyard', 180, 200, 180, 245)
+
+INSERT INTO Enemies
+    VALUES (393, 'orc', 'hidden valley', 55, 56, 50, 596)
+
+INSERT INTO Items
+    VALUES (758, 'Cucmber', 'food')
+
+INSERT INTO Items
+    VALUES (245, 'olive', 'food')
+
+INSERT INTO Items
+    VALUES (2107, 'gold key', 'quest item')
+
+INSERT INTO Items
+    VALUES (596, 'steel sword', 'weapon')
+
+5.
+SELECT Enemies.Name
+    FROM Enemies, Items
+    WHERE Enemies.ItemID = Items.ItemID
+    AND Items.Type = 'food'
+ 
+6.
+Statement statement = conn.createStatement()
+
+statement.execute("CREATE TABLE Enemies 
+(
+    EnemyID INT,
+    Name VARCHAR(255),
+    Location VARCHAR(255),
+    Hitpoints INT,
+    Attack INT,
+    Defense INT,
+    ItemID INT,
+)");
+
+statement.execute("CREATE TABLE Items 
+(
+    ItemID INT,
+    Name VARCHAR(255),
+    Type VARCHAR(255),
+)");
+
+statement.execute("INSERT INTO Enemies
+                        VALUES (136, 'hobgoblin', 'the dark woods', 140, 145, 130, 758)");
+statement.execute("INSERT INTO Enemies
+                        VALUES (214, 'skeleton guard', 'the graveyard', 180, 200, 180, 245)");
+statement.execute("INSERT INTO Enemies
+                        VALUES (393, 'orc', 'hidden valley', 55, 56, 50, 596)");
+statement.execute("INSERT INTO Items
+                        VALUES (758, 'Cucmber', 'food')");
+statement.execute("INSERT INTO Items
+                        VALUES (245, 'olive', 'food')");
+statement.execute("INSERT INTO Items
+                        VALUES (2107, 'gold key', 'quest item')");
+statement.execute("INSERT INTO Items
+                        VALUES (596, 'steel sword', 'weapon')");
+
+ResultSet result = stat.executeQuery
+("
+    SELECT Enemies.Name
+    FROM Enemies, Items
+    WHERE Enemies.ItemID = Items.ItemID
+    AND Items.Type = 'food'
+");
